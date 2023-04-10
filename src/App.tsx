@@ -12,7 +12,7 @@ function App() {
       <Router>
         <Routes>
           <Route path='/' element={<PrivateRoute><Admin/></PrivateRoute>}/>
-          <Route path='/login' element={<Login/>}/>
+          <Route path='/login' element={<Login/>}/>=
         </Routes>
       </Router>
     </div>
