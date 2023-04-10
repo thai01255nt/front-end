@@ -4,21 +4,32 @@ export  const LOGGIN_FAILURE = 'LOGGIN_FAILURE';
 
 export  const LOG_OUT = 'LOG_OUT';
 
-export interface AuthenticatedUser {
+type AuthenticatedUserType = {
     _id: string
     firstName: string
     lastName: string
     email: string
 }
-
-type ErrorResponse = Record<string, Array<string>>
-
-interface LoginRequest {
+type LoginRequestType = {
     type: typeof LOGGIN_REQUEST
     payload: {
         email: string
         password: string
     }
+}
+
+type ErrorResponse = Record<string, Array<string>>
+
+export class AuthenticatedUser {
+    constructor({...rest}: AuthenticatedUserType) {
+        Object.assign(this, rest)
+    }
+
+}
+
+
+interface LoginRequest {
+
 }
 
 interface LoginSuccess {
@@ -41,7 +52,7 @@ interface Logout {
 
 export type AccountActionType = LoginRequest | LoginSuccess | LoginFailure | Logout
 
-export interface accountState {
+export interface AccountState {
     user: AuthenticatedUser | null
     loading: boolean
     error: ErrorResponse | null
