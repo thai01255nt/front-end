@@ -1,5 +1,10 @@
 # Getting Started with Create React App
 
+```
+docker build -t front-end .
+docker run --restart always -d -p 3000:3000 front-end:latest
+```
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
