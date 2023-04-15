@@ -1,5 +1,5 @@
 FROM node:18-alpine
-# RUN npm install yarn -g
+RUN npm install -g serve
 
 WORKDIR /app
 ADD ./yarn.lock ./yarn.lock
@@ -9,4 +9,5 @@ ADD ./tsconfig.json ./tsconfig.json
 ADD ./public ./public
 ADD ./src ./src
 ADD ./.env ./.env
-CMD ["yarn", "start"]
+RUN yarn build
+CMD ["serve", "-s", "build"]
