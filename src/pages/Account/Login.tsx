@@ -22,7 +22,6 @@ export const Login = () => {
     const [submitted, setSubmitted] = useState(false)
 
     const loading = useSelector<AppState, boolean>((state) => (state.account.loading))
-    const account = useSelector<AppState, AccountState>((state) => (state.account))
 
     const { email, password } = inputs
 
@@ -42,8 +41,8 @@ export const Login = () => {
         setSubmitted(true)
         if (email && password) {
             const { from } = location.state || { from: { pathname: '/' } }
-            const e = await login(email, password, from)(dispatch)
-            setError((error)=> ({...e}))
+            const err = await login(email, password, from)(dispatch)
+            await setError((error)=> ({...error, email: err.email || [], password: err.password || []}))
         }
     }
     
