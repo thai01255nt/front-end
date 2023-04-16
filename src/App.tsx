@@ -12,7 +12,7 @@ function App() {
       <Router>
         <Routes>
           <Route path='/login' element={<AccountRoute><Login/></AccountRoute>}/>=
-          <Route path='/' element={<PrivateRoute><Admin/></PrivateRoute>}/>
+          <Route path='/*' element={<PrivateRoute><Admin/></PrivateRoute>}/>
         </Routes>
       </Router>
     </div>

@@ -7,10 +7,10 @@ export const LOG_OUT = 'LOG_OUT';
 type ErrorResponse = Record<string, Array<string>>
 
 type AuthenticatedUser = {
-    _id: string
-    firstName: string
-    lastName: string
+    id: string
     email: string
+    roleCode: number
+    adminBorkerID: string
 }
 type LoginRequest = {
     type: typeof LOGIN_REQUEST

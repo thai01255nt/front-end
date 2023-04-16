@@ -4,6 +4,7 @@ import { userService } from "../../services"
 import { history } from "../../helpers"
 import { useSelector } from "react-redux"
 import { AppState } from ".."
+import { AxiosResponse } from "axios"
 
 export const login = (email: string, password: string, from: string) => {
     return async (dispatch: Dispatch<AccountActionTypes>) => {
@@ -15,19 +16,21 @@ export const login = (email: string, password: string, from: string) => {
             }
         })
         let error = await userService.login(email, password).then((res) => {
-            dispatch({
-                type: LOGIN_SUCCESS,
-                payload: {token: res.data.token}
-            });
-            history.push(from)
-            return {}
-            }, (error) => {
-            dispatch({
-                type: LOGIN_FAILURE,
-                payload: { error: error }
-            })
-            return error
-        })
+                dispatch({
+                    type: LOGIN_SUCCESS,
+                    payload: {token: res.data.data.token}
+                });
+                history.push(from)
+                return {}
+            },
+            (error) => {
+                dispatch({
+                    type: LOGIN_FAILURE,
+                    payload: { error: error.data.errors }
+                })
+                return error.data.errors
+            }
+        )
         return error
     }
 }
