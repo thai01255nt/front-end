@@ -2,7 +2,7 @@
 
 ```
 docker build -t front-end .
-docker run --restart always -d -p 3000:3000 front-end:latest
+docker run --network fullStack --name docker-front-end --restart always -d -p 80:80 front-end:latest
 ```
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
