@@ -1,21 +1,17 @@
 import { Dispatch } from "react"
-import { AccountActionTypes, AccountState, LOGIN_FAILURE, LOGIN_REQUEST, LOGIN_SUCCESS, LOG_OUT } from "./types"
-import { userService } from "../../services"
+import { ClientActionTypes, ClientState, LOAD_CLIENTS_PAGING_REQUEST, LOAD_CLIENTS_PAGING_SUCCESS, LOAD_CLIENTS_PAGING_FAILURE } from "./types"
+import { clientService } from "../../services"
 import { history } from "../../helpers"
 import { useSelector } from "react-redux"
 import { AppState } from ".."
 import { AxiosResponse } from "axios"
 
-export const login = (email: string, password: string, from: string) => {
-    return async (dispatch: Dispatch<AccountActionTypes>) => {
+export const load_client_pagination = (userID: number, page: number, pageSize: number) => {
+    return async (dispatch: Dispatch<ClientActionTypes>) => {
         dispatch({
-            type: LOGIN_REQUEST,
-            payload: {
-                email: email,
-                password: password,
-            }
+            type: LOAD_CLIENTS_PAGING_REQUEST,
         })
-        let error = await userService.login(email, password).then((res) => {
+        let error = await clientService.load_client_pagination(userID=userID, page=page, pageSize=pageSize).then((res) => {
                 dispatch({
                     type: LOGIN_SUCCESS,
                     payload: {token: res.data.data.token}

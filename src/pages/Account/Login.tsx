@@ -42,7 +42,7 @@ export const Login = () => {
         if (email && password) {
             const { from } = location.state || { from: { pathname: '/' } }
             const err = await login(email, password, from)(dispatch)
-            await setError((error)=> ({...error, email: err.email || [], password: err.password || []}))
+            await setError((errors)=> ({...errors, email: err.email || [], password: err.password || []}))
         }
     }
     

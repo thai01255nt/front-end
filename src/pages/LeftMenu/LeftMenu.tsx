@@ -57,6 +57,7 @@ export const LeftMenu = () => {
                         <li className="nav-item">
                             <a
                                 className={"nav-link" + (isNavItemShow && navItemShowName === systemNav ? "" : " collapsed")}
+                                href='#'
                                 data-toggle="collapse"
                                 data-target="#collapseTwo"
                                 aria-expanded={isNavItemShow && navItemShowName === systemNav ? "true" : "false"}
@@ -89,6 +90,7 @@ export const LeftMenu = () => {
                 <li className="nav-item">
                     <a
                         className={"nav-link" + (isNavItemShow && navItemShowName === clientsNav ? "" : " collapsed")}
+                        href='#'
                         data-toggle="collapse"
                         data-target="#collapseTwo"
                         aria-expanded={isNavItemShow && navItemShowName === clientsNav ? "true" : "false"}

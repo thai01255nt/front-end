@@ -28,7 +28,7 @@ type LoginSuccess = {
 interface LoginFailure {
     type: typeof LOGIN_FAILURE
     payload: {
-        error: ErrorResponse
+        errors: ErrorResponse
     }
 }
 interface Logout {
@@ -37,7 +37,7 @@ interface Logout {
 export interface AccountState {
     user?: AuthenticatedUser
     loading: boolean
-    error?: ErrorResponse
+    errors?: ErrorResponse
     token?: string
 }
 

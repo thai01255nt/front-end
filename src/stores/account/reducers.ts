@@ -12,10 +12,10 @@ const accountReducer = (state: AccountState = initialState, action: AccountActio
             return { ...state, loading: false, token: action.payload.token, user: jwt(action.payload.token) }
         }
         case LOGIN_FAILURE: {
-            return { ...state, loading: false, error: action.payload.error, token: undefined, user: undefined }
+            return { ...state, loading: false, errors: action.payload.errors, token: undefined, user: undefined }
         }
         case LOG_OUT: {
-            return { ...state, error: undefined, token: undefined, user: undefined }
+            return { ...state, errors: undefined, token: undefined, user: undefined }
         }
         default:
             return state
