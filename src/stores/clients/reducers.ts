@@ -1,4 +1,3 @@
-import jwt from 'jwt-decode'
 import {
     ClientState,
     ClientActionTypes,
@@ -8,12 +7,14 @@ import {
 } from "./types"
 const initialState: ClientState = {
     loading: false,
-    total: 0,
-    page: 1,
-    pageSize: 10,
-    data: [],
-    errors: null,
+    payload: {
+        total: 0,
+        page: 1,
+        pageSize: 10,
+        data: [],
+    }
 }
+
 const clientReducer = (state: ClientState = initialState, action: ClientActionTypes
 ): ClientState => {
     switch (action.type) {
@@ -24,14 +25,17 @@ const clientReducer = (state: ClientState = initialState, action: ClientActionTy
             return {
                 ...state,
                 loading: false,
-                ...action.payload,
+                payload: action.payload,
             }
         }
         case LOAD_CLIENTS_PAGING_FAILURE: {
             return {
                 ... state,
                 loading: false,
-                ... action.payload
+                payload: {
+                    ...state.payload,
+                    errors: action.payload.errors
+                }
             }
         }
         default:

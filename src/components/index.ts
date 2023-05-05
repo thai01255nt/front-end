@@ -1,2 +1,3 @@
-export {PrivateRoute} from './PrivateRoute'
-export {AccountRoute} from './AccountRoute'
+export * from './PrivateRoute'
+export * from './AccountRoute'
+export * from './Pagination'

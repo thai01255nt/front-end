@@ -1,6 +1,7 @@
 
 import { applyMiddleware, combineReducers, createStore } from "redux"
 import { accountReducer } from "./account/reducers"
+import { clientReducer } from "./clients/reducers"
 import thunk from "redux-thunk";
 import storage from 'redux-persist/lib/storage'
 import { persistReducer, persistStore } from "redux-persist";
@@ -13,7 +14,8 @@ const persistConfig = {
 }
 
 const rootReducer = combineReducers({
-    account: accountReducer
+    account: accountReducer,
+    client: clientReducer
 })
 
 const persistedReducer = persistReducer(persistConfig, rootReducer)

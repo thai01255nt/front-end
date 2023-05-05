@@ -3,7 +3,7 @@ import { LeftMenu } from '../LeftMenu/LeftMenu'
 import { TopBar } from '../TopBar/TopBar'
 import { Route, Routes } from 'react-router'
 import { Home } from './Home/Home'
-import { ClientPNL, User } from './Clients'
+import { Client } from './Clients'
 export const Admin = () => {
     return (
         <>
@@ -17,8 +17,7 @@ export const Admin = () => {
                     <div className="container-fluid">
                         <Routes>
                             <Route path='/' element = {<Home/>}></Route>
-                            <Route path='/users' element = {<User/>}></Route>
-                            <Route path='/clients/pnl' element = {<ClientPNL/>}></Route>
+                            <Route path='/clients' element = {<Client/>}></Route>
                         </Routes>
                     </div>
                     {/* /.container-fluid */}

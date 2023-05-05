@@ -1,5 +1,3 @@
-import { IPagination } from "../../helpers"
-
 export const LOAD_CLIENTS_PAGING_REQUEST = 'LOAD_CLIENT_PAGING_REQUEST'
 export const LOAD_CLIENTS_PAGING_SUCCESS = 'LOAD_CLIENT_PAGING_SUCCESS'
 export const LOAD_CLIENTS_PAGING_FAILURE = 'LOAD_CLIENT_PAGING_FAILURE'
@@ -7,7 +5,7 @@ export const LOAD_CLIENTS_PAGING_FAILURE = 'LOAD_CLIENT_PAGING_FAILURE'
 type ErrorResponse = Record<string, Array<string>>
 export interface IClient {
     id: string
-    brokerName: string
+    nameBroker: string
     idClient: number
     nameClient: string
     interestRate: number
@@ -22,8 +20,6 @@ type IClientPagination = {
     data?: IClient[],
     errors?: ErrorResponse
 }
-
-
 
 interface LoadClientPagingRequest {
     type: typeof LOAD_CLIENTS_PAGING_REQUEST
