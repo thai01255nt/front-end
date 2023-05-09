@@ -48,38 +48,24 @@ export const Client = () => {
                             <table className="table table-bordered" id="dataTable" width="100%" cellSpacing={0}>
                                 <thead>
                                     <tr>
-                                        {/* <th>id</th>
+                                        <th>id</th>
                                         <th>idClient</th>
                                         <th>nameClient</th>
                                         <th>nameBroker</th>
                                         <th>interestRate</th>
                                         <th>costBuy</th>
-                                        <th>costSell</th> */}
-                                        <th>1</th>
-                                        <th>2</th>
-                                        <th>3</th>
-                                        <th>4</th>
-                                        <th>5</th>
-                                        <th>6</th>
-                                        <th>7</th>
+                                        <th>costSell</th>
                                     </tr>
                                 </thead>
                                 <tfoot>
                                     <tr>
-                                        {/* <th>id</th>
+                                        <th>id</th>
                                         <th>idClient</th>
                                         <th>nameClient</th>
                                         <th>nameBroker</th>
                                         <th>interestRate</th>
                                         <th>costBuy</th>
-                                        <th>costSell</th> */}
-                                        <th>1</th>
-                                        <th>2</th>
-                                        <th>3</th>
-                                        <th>4</th>
-                                        <th>5</th>
-                                        <th>6</th>
-                                        <th>7</th>
+                                        <th>costSell</th>
                                     </tr>
                                 </tfoot>
                                 <tbody>{clientElements}</tbody>
