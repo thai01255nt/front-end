@@ -4,15 +4,18 @@ import {
     LOAD_CLIENTS_PAGING_REQUEST,
     LOAD_CLIENTS_PAGING_SUCCESS,
     LOAD_CLIENTS_PAGING_FAILURE,
+    LOAD_CLIENT_DETAIL_REQUEST,
+    LOAD_CLIENT_DETAIL_SUCCESS,
+    LOAD_CLIENT_DETAIL_FAILURE,
 } from "./types"
 const initialState: ClientState = {
     loading: false,
-    payload: {
+    pagination: {
         total: 0,
         page: 1,
         pageSize: 10,
         data: [],
-    }
+    },
 }
 
 const clientReducer = (state: ClientState = initialState, action: ClientActionTypes
@@ -25,15 +28,36 @@ const clientReducer = (state: ClientState = initialState, action: ClientActionTy
             return {
                 ...state,
                 loading: false,
-                payload: action.payload,
+                pagination: action.payload,
             }
         }
         case LOAD_CLIENTS_PAGING_FAILURE: {
             return {
                 ... state,
                 loading: false,
-                payload: {
-                    ...state.payload,
+                pagination: {
+                    ...state.pagination,
+                    errors: action.payload.errors
+                }
+            }
+        }
+
+        case LOAD_CLIENT_DETAIL_REQUEST: {
+            return { ...state, loading: true }
+        }
+        case LOAD_CLIENT_DETAIL_SUCCESS: {
+            return {
+                ...state,
+                loading: false,
+                detail: action.payload,
+            }
+        }
+        case LOAD_CLIENT_DETAIL_FAILURE: {
+            return {
+                ... state,
+                loading: false,
+                detail: {
+                    ...state.detail,
                     errors: action.payload.errors
                 }
             }

@@ -5,7 +5,7 @@ const loadClientPagination = (page: number, pageSize: number) => {
     return api.get(`/clients?page=${page}&${pageSize}`)
 }
 
-const getClient = (clientID: number) => {
+const getClient = (clientID: string) => {
     return api.get(`/clients?${clientID}`)
 }
 
