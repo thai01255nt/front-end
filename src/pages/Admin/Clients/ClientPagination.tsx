@@ -4,27 +4,28 @@ import { AppState } from '../../../stores'
 import { useDispatch } from 'react-redux'
 import { loadClientPagination } from '../../../stores/clients/actions'
 import { Pagination } from '../../../components'
+import { useNavigate } from 'react-router-dom'
 
-export const Client = () => {
-    const clients = useSelector((state:AppState)=> state.client.payload.data)
+export const ClientPagination = () => {
+    const clients = useSelector((state: AppState) => state.client.pagination.data)
 
-    const total = useSelector((state:AppState)=> state.client.payload.total)
-    const pageSize = useSelector((state:AppState)=> state.client.payload.pageSize)
-    const [currentPage, setCurrentPage] = useState(1)
+    const total = useSelector((state: AppState) => state.client.pagination.total)
+    const currentPage = useSelector((state: AppState) => state.client.pagination.page + 1)
+    const pageSize = useSelector((state: AppState) => state.client.pagination.pageSize)
 
     const onPageChanged = (page: number) => {
-        setCurrentPage(page)
-        loadClientPagination(page-1, pageSize)(dispatch)
+        loadClientPagination(page - 1, pageSize)(dispatch)
     }
 
     const dispatch = useDispatch()
     useEffect(() => {
-        loadClientPagination(currentPage-1, pageSize)(dispatch)
+        loadClientPagination(currentPage - 1, pageSize)(dispatch)
     }, [dispatch, currentPage])
-    const clientElements = clients?.map((client)=>{
+    let navigate = useNavigate(); 
+    const clientElements = clients?.map((client) => {
         return (
-            <tr>
-                <td><a href={`/clients/${client.id}`}>{client.id}</a></td>
+            <tr onClick={() => navigate(`/clients/${client.idClient}`)}>
+                <td>{client.id}</td>
                 <td>{client.idClient}</td>
                 <td>{client.nameClient}</td>
                 <td>{client.nameBroker}</td>
@@ -73,8 +74,8 @@ export const Client = () => {
                         </div>
                     </div>
                     <div className='card-footer'>
-                        <Pagination total={total} pageSize={pageSize} pageLimit={5} onPageChanged={onPageChanged}/>
-                        </div>
+                        <Pagination total={total} currentPage={currentPage} pageSize={pageSize} pageLimit={5} onPageChanged={onPageChanged} />
+                    </div>
                 </div>
             </div>
         </>

@@ -16,6 +16,7 @@ const initialState: ClientState = {
         pageSize: 10,
         data: [],
     },
+    detail: undefined,
 }
 
 const clientReducer = (state: ClientState = initialState, action: ClientActionTypes

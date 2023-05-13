@@ -1,7 +1,10 @@
 import { useState } from 'react'
+import { useSelector } from 'react-redux'
+import { AppState } from '../stores'
 
 type PaginationProps = {
     onPageChanged: Function,
+    currentPage: number
     pageSize: number,
     total: number,
     pageLimit: number,
@@ -9,7 +12,7 @@ type PaginationProps = {
 
 export const Pagination = (props: PaginationProps) => {
     const { pageSize, total, pageLimit } = props
-    const [currentPage, setCurrentPage] = useState<number>(1)
+    const currentPage = useSelector((state: AppState) => state.client.pagination.page + 1)
     const totalPages = Math.ceil(total / pageSize)
     var startPage = Math.max(currentPage - pageLimit, 1)
     var endPage = Math.min(currentPage + pageLimit, totalPages)
@@ -25,7 +28,6 @@ export const Pagination = (props: PaginationProps) => {
     }
     const pages = range(startPage, endPage)
     const handleClick = (page: number) => {
-        setCurrentPage(page)
         props.onPageChanged(page)
     }
     return (
