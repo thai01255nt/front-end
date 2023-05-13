@@ -9,17 +9,20 @@ import { useParams } from 'react-router-dom'
 export const ClientDetail = () => {
     let { id } = useParams()
     const dispatch = useDispatch()
+    const expectedPNL = useSelector((state: AppState) => state.clientDetail.detail?.data?.expectedPNL)
+    const realisedPNL = useSelector((state: AppState) => state.clientDetail.detail?.data?.realisedPNL)
+    const deposite = useSelector((state: AppState) => state.clientDetail.detail?.data?.deposite)
+    const portfolio = useSelector((state: AppState) => state.clientDetail.detail?.data?.portfolio)
+    const assets = useSelector((state: AppState) => state.clientDetail.detail?.data?.assets)
+    console.log(assets)
     useEffect(() => {
+        if (id) loadClientDetail(id)(dispatch)
         const intervalId = setInterval(() => {
             if (id) loadClientDetail(id)(dispatch)
-        }, 1000 * 5)
+        }, id ? 1000 * 5 : 0)
         return () => clearInterval(intervalId)
     }, [dispatch, id])
-    const expectedPNL = useSelector((state: AppState) => state.client.detail?.data?.expectedPNL)
-    const realisedPNL = useSelector((state: AppState) => state.client.detail?.data?.realisedPNL)
-    const deposite = useSelector((state: AppState) => state.client.detail?.data?.deposite)
-    const portfolio = useSelector((state: AppState) => state.client.detail?.data?.portfolio)
-    const assets = useSelector((state: AppState) => state.client.detail?.data?.assets)
+
     return (
         < div className="container-fluid" >
             {/* Page Heading */}

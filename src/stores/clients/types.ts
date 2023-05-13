@@ -69,8 +69,13 @@ interface LoadClientDetailFailure {
 export interface ClientState {
     loading: boolean,
     pagination: IClientPagination,
+}
+
+export interface ClientDetailState {
+    loading: boolean,
     detail?: IClientDetail
 }
+
 
 export type ClientActionTypes =
     | LoadClientPagingRequest

@@ -7,7 +7,7 @@ export const loadClientPagination = (page: number, pageSize: number) => {
         dispatch({
             type: LOAD_CLIENTS_PAGING_REQUEST,
         })
-        let error = await clientService.loadClientPagination(page = page, pageSize = pageSize).then((res) => {
+        await clientService.loadClientPagination(page = page, pageSize = pageSize).then((res) => {
             dispatch({
                 type: LOAD_CLIENTS_PAGING_SUCCESS,
                 payload: res.data
@@ -19,10 +19,10 @@ export const loadClientPagination = (page: number, pageSize: number) => {
                     type: LOAD_CLIENTS_PAGING_FAILURE,
                     payload: error.data
                 })
-                return error.data.errors
+                return
             }
         )
-        return error
+        return
     }
 }
 
@@ -31,7 +31,7 @@ export const loadClientDetail = (idClient: string) => {
         dispatch({
             type: LOAD_CLIENT_DETAIL_REQUEST,
         })
-        let error = await clientService.loadClientDetail(idClient).then((res) => {
+        await clientService.loadClientDetail(idClient).then((res) => {
             dispatch({
                 type: LOAD_CLIENT_DETAIL_SUCCESS,
                 payload: res.data
@@ -43,9 +43,9 @@ export const loadClientDetail = (idClient: string) => {
                     type: LOAD_CLIENT_DETAIL_FAILURE,
                     payload: error.data
                 })
-                return error.data.errors
+                return
             }
         )
-        return error
+        return
     }
 }

@@ -1,7 +1,7 @@
 
 import { applyMiddleware, combineReducers, createStore } from "redux"
 import { accountReducer } from "./account/reducers"
-import { clientReducer } from "./clients/reducers"
+import { clientDetailReducer, clientReducer } from "./clients/reducers"
 import thunk from "redux-thunk";
 import storage from 'redux-persist/lib/storage'
 import { persistReducer, persistStore } from "redux-persist";
@@ -10,12 +10,13 @@ import { setAuthToken } from "../helpers/set-auth-token";
 const persistConfig = {
     key: 'root',
     storage,
-    whilelist: ['account'],
+    whilelist: ['account', 'client'],
 }
 
 const rootReducer = combineReducers({
     account: accountReducer,
-    client: clientReducer
+    client: clientReducer,
+    clientDetail: clientDetailReducer,
 })
 
 const persistedReducer = persistReducer(persistConfig, rootReducer)

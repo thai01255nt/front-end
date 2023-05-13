@@ -7,8 +7,9 @@ import {
     LOAD_CLIENT_DETAIL_REQUEST,
     LOAD_CLIENT_DETAIL_SUCCESS,
     LOAD_CLIENT_DETAIL_FAILURE,
+    ClientDetailState,
 } from "./types"
-const initialState: ClientState = {
+const initialClientState: ClientState = {
     loading: false,
     pagination: {
         total: 0,
@@ -16,10 +17,12 @@ const initialState: ClientState = {
         pageSize: 10,
         data: [],
     },
-    detail: undefined,
+}
+const initialClientDetailState: ClientDetailState = {
+    loading: false,
 }
 
-const clientReducer = (state: ClientState = initialState, action: ClientActionTypes
+const clientReducer = (state: ClientState = initialClientState, action: ClientActionTypes
 ): ClientState => {
     switch (action.type) {
         case LOAD_CLIENTS_PAGING_REQUEST: {
@@ -34,14 +37,20 @@ const clientReducer = (state: ClientState = initialState, action: ClientActionTy
         }
         case LOAD_CLIENTS_PAGING_FAILURE: {
             return {
-                ... state,
+                ...state,
                 loading: false,
                 pagination: {
                     ...state.pagination,
-                    errors: action.payload.errors
                 }
             }
         }
+        default:
+            return state
+    }
+}
+const clientDetailReducer = (state: ClientDetailState = initialClientDetailState, action: ClientActionTypes
+): ClientDetailState => {
+    switch (action.type) {
 
         case LOAD_CLIENT_DETAIL_REQUEST: {
             return { ...state, loading: true }
@@ -55,12 +64,9 @@ const clientReducer = (state: ClientState = initialState, action: ClientActionTy
         }
         case LOAD_CLIENT_DETAIL_FAILURE: {
             return {
-                ... state,
+                ...state,
                 loading: false,
-                detail: {
-                    ...state.detail,
-                    errors: action.payload.errors
-                }
+                detail: {}
             }
         }
         default:
@@ -68,4 +74,4 @@ const clientReducer = (state: ClientState = initialState, action: ClientActionTy
     }
 }
 
-export { clientReducer }
+export { clientReducer, clientDetailReducer }
