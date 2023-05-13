@@ -8,7 +8,7 @@ export const Table = (props: { data?: DataFrame, hightLightLastRow: boolean }) =
     const elements = data.slice(0, splitIndex).map((record) => {
         return (
             <tr>
-                {record.map((r) => <td>{r.toLocaleString()}</td>)}
+                {record.map((r) => <td>{r?.toLocaleString()}</td>)}
             </tr>
         )
     })
