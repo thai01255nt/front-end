@@ -12,7 +12,7 @@ type PaginationProps = {
 
 export const Pagination = (props: PaginationProps) => {
     const { pageSize, total, pageLimit } = props
-    const currentPage = useSelector((state: AppState) => state.client.pagination.page + 1)
+    const currentPage = props.currentPage
     const totalPages = Math.ceil(total / pageSize)
     var startPage = Math.max(currentPage - pageLimit, 1)
     var endPage = Math.min(currentPage + pageLimit, totalPages)

@@ -4,23 +4,27 @@ import { AppState } from '../../../stores'
 import { useDispatch } from 'react-redux'
 import { loadClientPagination } from '../../../stores/clients/actions'
 import { Pagination } from '../../../components'
-import { useNavigate } from 'react-router-dom'
+import { useLocation, useNavigate } from 'react-router-dom'
 
 export const ClientPagination = () => {
     const clients = useSelector((state: AppState) => state.client.pagination.data)
+    let { search } = useLocation();
 
+    const query = new URLSearchParams(search);
+    const brokerName = query.get('brokerName');
+    
     const total = useSelector((state: AppState) => state.client.pagination.total)
     const currentPage = useSelector((state: AppState) => state.client.pagination.page + 1)
     const pageSize = useSelector((state: AppState) => state.client.pagination.pageSize)
 
     const onPageChanged = (page: number) => {
-        loadClientPagination(page - 1, pageSize)(dispatch)
+        loadClientPagination(page - 1, pageSize, brokerName)(dispatch)
     }
 
     const dispatch = useDispatch()
     useEffect(() => {
-        loadClientPagination(currentPage - 1, pageSize)(dispatch)
-    }, [dispatch, currentPage])
+        loadClientPagination(currentPage - 1, pageSize, brokerName)(dispatch)
+    }, [dispatch, currentPage, brokerName])
     let navigate = useNavigate(); 
     const clientElements = clients?.map((client) => {
         return (

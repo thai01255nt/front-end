@@ -12,6 +12,8 @@ export const LeftMenu = () => {
 
     const systemNav = "Hệ thống"
     const clientsNav = "Khách hàng"
+    const managementNav = "Tổng hợp"
+    const portfolioNav = "Danh mục"
 
     const handleComponentShow = (navItemName: string) => {
         if (navItemShowName !== navItemName) {
@@ -82,6 +84,73 @@ export const LeftMenu = () => {
                         </li>
                     </>
                 }
+                {/* Nav Item - quản lý Collapse Menu */}
+                {
+                    (account.user?.roleCode === 1582 || account.user?.adminBorkerID)
+                    &&
+                    <>
+                        <hr className="sidebar-divider" />
+                        <div className="sidebar-heading">
+                            Quản lý
+                        </div>
+                        <li className="nav-item">
+                            <a
+                                className={"nav-link" + (isNavItemShow && navItemShowName === managementNav ? "" : " collapsed")}
+                                href='#'
+                                data-toggle="collapse"
+                                data-target="#collapseTwo"
+                                aria-expanded={isNavItemShow && navItemShowName === managementNav ? "true" : "false"}
+                                aria-controls="collapseTwo"
+                                onClick={() => { handleComponentShow(managementNav) }}
+                            >
+                                <i className="fas fa-fw fa-cog" />
+                                <span>{managementNav}</span>
+                            </a>
+                            <div
+                                id="collapseTwo"
+                                className={"collapse" + (isNavItemShow && navItemShowName === managementNav ? " show" : "")}
+                                aria-labelledby="headingTwo"
+                                data-parent="#accordionSidebar"
+                            >
+                                <div className="bg-white py-2 collapse-inner rounded">
+                                    {/* <h6 className="collapse-header"></h6> */}
+                                    <Link className="collapse-item" to="/management/management/long_kho_0">long_kho_0</Link>
+                                    <Link className="collapse-item" to="/management/management/long_kho_0_t0">long_kho_0_t0</Link>
+                                    <Link className="collapse-item" to="/management/management/long_kho_1">long_kho_1</Link>
+                                    <Link className="collapse-item" to="/management/management/short_kho_0_new">short_kho_0_new</Link>
+                                </div>
+                            </div>
+                        </li>
+                        <li className="nav-item">
+                            <a
+                                className={"nav-link" + (isNavItemShow && navItemShowName === portfolioNav ? "" : " collapsed")}
+                                href='#'
+                                data-toggle="collapse"
+                                data-target="#collapseTwo"
+                                aria-expanded={isNavItemShow && navItemShowName === portfolioNav ? "true" : "false"}
+                                aria-controls="collapseTwo"
+                                onClick={() => { handleComponentShow(portfolioNav) }}
+                            >
+                                <i className="fas fa-fw fa-cog" />
+                                <span>{portfolioNav}</span>
+                            </a>
+                            <div
+                                id="collapseTwo"
+                                className={"collapse" + (isNavItemShow && navItemShowName === portfolioNav ? " show" : "")}
+                                aria-labelledby="headingTwo"
+                                data-parent="#accordionSidebar"
+                            >
+                                <div className="bg-white py-2 collapse-inner rounded">
+                                    {/* <h6 className="collapse-header"></h6> */}
+                                    <Link className="collapse-item" to="/management/portfolio/long_kho_0">long_kho_0</Link>
+                                    <Link className="collapse-item" to="/management/portfolio/long_kho_0_t0">long_kho_0_t0</Link>
+                                    <Link className="collapse-item" to="/management/portfolio/long_kho_1">long_kho_1</Link>
+                                    <Link className="collapse-item" to="/management/portfolio/short_kho_0_new">short_kho_0_new</Link>
+                                </div>
+                            </div>
+                        </li>
+                    </>
+                }
                 {/* Nav Item - Khach hang Collapse Menu */}
                 <hr className="sidebar-divider" />
                 <div className="sidebar-heading">
@@ -108,7 +177,10 @@ export const LeftMenu = () => {
                     >
                         <div className="bg-white py-2 collapse-inner rounded">
                             {/* <h6 className="collapse-header"></h6> */}
-                            <Link className="collapse-item" to="/clients">Clients</Link>
+                            <Link className="collapse-item" to="/clients?brokerName=long_kho_0">long_kho_0</Link>
+                            <Link className="collapse-item" to="/clients?brokerName=long_kho_0_t0">long_kho_0_t0</Link>
+                            <Link className="collapse-item" to="/clients?brokerName=long_kho_1">long_kho_1</Link>
+                            <Link className="collapse-item" to="/clients?brokerName=short_kho_0_new">short_kho_0_new</Link>
                         </div>
                     </div>
                 </li>

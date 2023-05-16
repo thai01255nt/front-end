@@ -2,12 +2,12 @@ import { Dispatch } from "react"
 import { ClientActionTypes, LOAD_CLIENTS_PAGING_REQUEST, LOAD_CLIENTS_PAGING_SUCCESS, LOAD_CLIENTS_PAGING_FAILURE, LOAD_CLIENT_DETAIL_REQUEST, LOAD_CLIENT_DETAIL_SUCCESS, LOAD_CLIENT_DETAIL_FAILURE } from "./types"
 import { clientService } from "../../services"
 
-export const loadClientPagination = (page: number, pageSize: number) => {
+export const loadClientPagination = (page: number, pageSize: number, brokerName: string | null) => {
     return async (dispatch: Dispatch<ClientActionTypes>) => {
         dispatch({
             type: LOAD_CLIENTS_PAGING_REQUEST,
         })
-        await clientService.loadClientPagination(page = page, pageSize = pageSize).then((res) => {
+        await clientService.loadClientPagination(page = page, pageSize = pageSize, brokerName = brokerName).then((res) => {
             dispatch({
                 type: LOAD_CLIENTS_PAGING_SUCCESS,
                 payload: res.data

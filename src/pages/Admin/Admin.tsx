@@ -3,7 +3,7 @@ import { LeftMenu } from '../LeftMenu/LeftMenu'
 import { TopBar } from '../TopBar/TopBar'
 import { Route, Routes } from 'react-router'
 import { Home } from './Home/Home'
-import { ClientPagination, ClientDetail } from './Clients'
+import { ClientPagination, ClientDetail, Portfolio, Management } from './Clients'
 export const Admin = () => {
     return (
         <>
@@ -18,6 +18,8 @@ export const Admin = () => {
                         <Routes>
                             <Route path='/' element = {<Home/>}></Route>
                             <Route path='/clients' element = {<ClientPagination/>}></Route>
+                            <Route path='/management/management/:brokerName' element = {<Management/>}></Route>
+                            <Route path='/management/portfolio/:brokerName' element = {<Portfolio/>}></Route>
                             <Route path='/clients/:id' element = {<ClientDetail/>}></Route>
                         </Routes>
                     </div>
