@@ -11,10 +11,10 @@ export const Management = () => {
     let { brokerName } = useParams()
     const [managementRes, setManagementRes] = useState<Record<any, any>>({})
     const [total, setTotal] = useState(0)
-    const [currentPage, setCurrentPage] = useState(0)
+    const [currentPage, setCurrentPage] = useState(1)
     const [pageSize, setpageSize] = useState(20)
     const onPageChanged = (page: number) => {
-        if (brokerName) clientService.loadMangement(brokerName, page, pageSize).then((res) => {
+        if (brokerName) clientService.loadMangement(brokerName, page-1, pageSize).then((res) => {
             setManagementRes(res)
             setTotal(res.data.total)
             console.log(res.data)
@@ -23,7 +23,7 @@ export const Management = () => {
         }, (error) => { setManagementRes(error.res) })
     }
     useEffect(() => {
-        if (brokerName) clientService.loadMangement(brokerName, currentPage, pageSize).then((res) => {
+        if (brokerName) clientService.loadMangement(brokerName, currentPage-1, pageSize).then((res) => {
             setManagementRes(res)
             setTotal(res.data.total)
             setCurrentPage(currentPage)
