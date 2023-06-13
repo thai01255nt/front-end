@@ -15,29 +15,32 @@ export const Management = () => {
     const [total, setTotal] = useState(0)
     const [currentPage, setCurrentPage] = useState(1)
     const [pageSize, setpageSize] = useState(20)
-    const [loading, setLoading] = useState(false)
+    const [intervalVar, setIntervalVar] = useState<any>(undefined)
     const loadMangement = async (_brokerName: string, _page: number, _pageSize: number) => {
-        setLoading(true)
         await clientService.loadMangement(_brokerName, _page-1, _pageSize).then((res) => {
             setManagementRes(res)
             setTotal(res.data.total)
             setCurrentPage(_page)
             setpageSize(res.data.pageSize)
         }, (error) => { setManagementRes(error.res) });
-        setLoading(false)
     }
 
     const onPageChanged = (page: number) => {
         if (brokerName) loadMangement(brokerName, page, pageSize)
+        const intervalId = setInterval(() => {
+            if (brokerName) loadMangement(brokerName, currentPage, pageSize)
+        }, brokerName ? 1000 * 5 : 0)
+        setIntervalVar(intervalId)
     }
     useEffect(() => {
         if (brokerName) {
             loadMangement(brokerName, currentPage, pageSize)
         }
         const intervalId = setInterval(() => {
-            if (brokerName && !loading) loadMangement(brokerName, currentPage, pageSize)
+            if (brokerName) loadMangement(brokerName, currentPage, pageSize)
         }, brokerName ? 1000 * 5 : 0)
-        return () => clearInterval(intervalId)
+        setIntervalVar(intervalId)
+        return () => clearInterval(intervalVar)
     }, [brokerName])
 
     return (
