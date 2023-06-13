@@ -37,13 +37,11 @@ export const Management = () => {
         if (intervalVar) {
             clearInterval(intervalVar)
         }
-        setCurrentPage(1)
-        setManagementRes({})
         if (brokerName) {
-            loadMangement(brokerName, currentPage, pageSize)
+            loadMangement(brokerName, 1, pageSize)
         }
         const intervalId = setInterval(() => {
-            if (brokerName) loadMangement(brokerName, currentPage, pageSize)
+            if (brokerName) loadMangement(brokerName, 1, pageSize)
         }, brokerName ? 1000 * 5 : 0)
         setIntervalVar(intervalId)
         return () => clearInterval(intervalVar)
