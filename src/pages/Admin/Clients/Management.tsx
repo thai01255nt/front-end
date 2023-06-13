@@ -28,14 +28,14 @@ export const Management = () => {
     }
 
     const onPageChanged = (page: number) => {
-        if (brokerName) loadMangement(brokerName, page-1, pageSize)
+        if (brokerName) loadMangement(brokerName, page, pageSize)
     }
     useEffect(() => {
         if (brokerName) {
-            loadMangement(brokerName, currentPage-1, pageSize)
+            loadMangement(brokerName, currentPage, pageSize)
         }
         const intervalId = setInterval(() => {
-            if (brokerName && !loading) loadMangement(brokerName, currentPage-1, pageSize)
+            if (brokerName && !loading) loadMangement(brokerName, currentPage, pageSize)
         }, brokerName ? 1000 * 5 : 0)
         return () => clearInterval(intervalId)
     }, [brokerName])
