@@ -7,35 +7,35 @@ import { Pagination, Table } from '../../../components'
 import { useParams } from 'react-router-dom'
 import { clientService } from '../../../services'
 
+
+
 export const Management = () => {
     let { brokerName } = useParams()
     const [managementRes, setManagementRes] = useState<Record<any, any>>({})
     const [total, setTotal] = useState(0)
     const [currentPage, setCurrentPage] = useState(1)
     const [pageSize, setpageSize] = useState(20)
-    const onPageChanged = (page: number) => {
-        if (brokerName) clientService.loadMangement(brokerName, page-1, pageSize).then((res) => {
-            setManagementRes(res)
-            setTotal(res.data.total)
-            console.log(res.data)
-            setCurrentPage(page)
-            setpageSize(res.data.pageSize)
-        }, (error) => { setManagementRes(error.res) })
-    }
-    useEffect(() => {
-        if (brokerName) clientService.loadMangement(brokerName, currentPage-1, pageSize).then((res) => {
+    const [loading, setLoading] = useState(false)
+    const loadMangement = async (brokerName: string, page: number, pageSize: number) => {
+        setLoading(true)
+        await clientService.loadMangement(brokerName, currentPage-1, pageSize).then((res) => {
             setManagementRes(res)
             setTotal(res.data.total)
             setCurrentPage(currentPage)
             setpageSize(res.data.pageSize)
-        }, (error) => { setManagementRes(error.res) })
+        }, (error) => { setManagementRes(error.res) });
+        setLoading(false)
+    }
+
+    const onPageChanged = (page: number) => {
+        if (brokerName) loadMangement(brokerName, page-1, pageSize)
+    }
+    useEffect(() => {
+        if (brokerName) {
+            loadMangement
+        }
         const intervalId = setInterval(() => {
-            if (brokerName) clientService.loadMangement(brokerName, currentPage-1, pageSize).then((res) => {
-                setManagementRes(res)
-                setTotal(res.data.total)
-                setCurrentPage(currentPage)
-                setpageSize(res.data.pageSize)
-            }, (error) => { setManagementRes(error.res) })
+            if (brokerName && !loading) loadMangement(brokerName, currentPage-1, pageSize)
         }, brokerName ? 1000 * 5 : 0)
         return () => clearInterval(intervalId)
     }, [brokerName])

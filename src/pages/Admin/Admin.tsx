@@ -4,6 +4,8 @@ import { TopBar } from '../TopBar/TopBar'
 import { Route, Routes } from 'react-router'
 import { Home } from './Home/Home'
 import { ClientPagination, ClientDetail, Portfolio, Management } from './Clients'
+import { CreateUser } from './Users/CreateUser'
+
 export const Admin = () => {
     return (
         <>
@@ -21,6 +23,7 @@ export const Admin = () => {
                             <Route path='/management/management/:brokerName' element = {<Management/>}></Route>
                             <Route path='/management/portfolio/:brokerName' element = {<Portfolio/>}></Route>
                             <Route path='/clients/:id' element = {<ClientDetail/>}></Route>
+                            <Route path='/users/create' element = {<CreateUser/>}></Route>
                         </Routes>
                     </div>
                     {/* /.container-fluid */}

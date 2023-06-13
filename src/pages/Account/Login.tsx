@@ -65,7 +65,7 @@ export const Login = () => {
                                         <form className="user" onSubmit={handleSubmmit}>
                                             <div className="form-group">
                                                 <input
-                                                    type="email"
+                                                    type="text"
                                                     className={
                                                         "form-control form-control-user " +
                                                         (submitted && (!email || (error.email.length>0)) ? 'is-invalid' : '')}

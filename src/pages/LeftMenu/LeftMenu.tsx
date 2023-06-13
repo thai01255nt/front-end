@@ -77,8 +77,8 @@ export const LeftMenu = () => {
                             >
                                 <div className="bg-white py-2 collapse-inner rounded">
                                     {/* <h6 className="collapse-header"></h6> */}
+                                    <Link className="collapse-item" to="/users/create">Tạo người dùng</Link>
                                     <Link className="collapse-item" to="/users">Người dùng</Link>
-                                    <Link className="collapse-item" to="/clients/membership">Quản lý quyền truy cập</Link>
                                 </div>
                             </div>
                         </li>
