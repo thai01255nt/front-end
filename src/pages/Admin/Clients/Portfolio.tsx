@@ -14,6 +14,11 @@ export const Portfolio = () => {
     useEffect(() => {
         if (brokerName) clientService.loadPortfilio(brokerName).then((res) => {setPortfolioRes(res)
         }, (error) => { setPortfolioRes(error.res) })
+        const intervalId = setInterval(() => {
+            if (brokerName) clientService.loadPortfilio(brokerName).then((res) => {setPortfolioRes(res)
+            }, (error) => { setPortfolioRes(error.res) })
+        }, brokerName ? 1000 * 5 : 0)
+        return () => clearInterval(intervalId)
     }, [brokerName])
 
     return (

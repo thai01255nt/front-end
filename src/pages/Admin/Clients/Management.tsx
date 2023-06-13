@@ -29,6 +29,15 @@ export const Management = () => {
             setCurrentPage(currentPage)
             setpageSize(res.data.pageSize)
         }, (error) => { setManagementRes(error.res) })
+        const intervalId = setInterval(() => {
+            if (brokerName) clientService.loadMangement(brokerName, currentPage-1, pageSize).then((res) => {
+                setManagementRes(res)
+                setTotal(res.data.total)
+                setCurrentPage(currentPage)
+                setpageSize(res.data.pageSize)
+            }, (error) => { setManagementRes(error.res) })
+        }, brokerName ? 1000 * 5 : 0)
+        return () => clearInterval(intervalId)
     }, [brokerName])
 
     return (
