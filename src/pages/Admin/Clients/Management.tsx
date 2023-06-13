@@ -16,12 +16,12 @@ export const Management = () => {
     const [currentPage, setCurrentPage] = useState(1)
     const [pageSize, setpageSize] = useState(20)
     const [loading, setLoading] = useState(false)
-    const loadMangement = async (brokerName: string, page: number, pageSize: number) => {
+    const loadMangement = async (_brokerName: string, _page: number, _pageSize: number) => {
         setLoading(true)
-        await clientService.loadMangement(brokerName, currentPage-1, pageSize).then((res) => {
+        await clientService.loadMangement(_brokerName, _page-1, _pageSize).then((res) => {
             setManagementRes(res)
             setTotal(res.data.total)
-            setCurrentPage(currentPage)
+            setCurrentPage(_page)
             setpageSize(res.data.pageSize)
         }, (error) => { setManagementRes(error.res) });
         setLoading(false)
