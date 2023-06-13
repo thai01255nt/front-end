@@ -34,11 +34,13 @@ export const Management = () => {
         setIntervalVar(intervalId)
     }
     useEffect(() => {
-        if (brokerName) {
-            loadMangement(brokerName, currentPage, pageSize)
-        }
         if (intervalVar) {
             clearInterval(intervalVar)
+        }
+        setCurrentPage(1)
+        setManagementRes({})
+        if (brokerName) {
+            loadMangement(brokerName, currentPage, pageSize)
         }
         const intervalId = setInterval(() => {
             if (brokerName) loadMangement(brokerName, currentPage, pageSize)
