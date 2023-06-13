@@ -32,7 +32,7 @@ export const Management = () => {
     }
     useEffect(() => {
         if (brokerName) {
-            loadMangement
+            loadMangement(brokerName, currentPage-1, pageSize)
         }
         const intervalId = setInterval(() => {
             if (brokerName && !loading) loadMangement(brokerName, currentPage-1, pageSize)
