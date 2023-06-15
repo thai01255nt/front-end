@@ -56,10 +56,10 @@ export const ResetPassword = () => {
                     />
                     {(errors.repeatNewPassword && <div className='invalid-feedback'>{errors.repeatNewPassword.join("\n")}</div>)}
                 </div>
+                <a className="btn btn-primary btn-user btn-block" onClick={onClick}>
+                    Đổi mật khẩu
+                </a>
             </form>
-            <a className="btn btn-primary btn-user btn-block" onClick={onClick}>
-                Đổi mật khẩu
-            </a>
             {/* </div> */}
         </div>
     )
