@@ -17,7 +17,7 @@ const createUser = (email: string, defaultPassword: string, repeatDefaultPasswor
 
 const resetPassword = (oldPassword: string, newPassword: string, repeatNewPassword: string) => {
     const body = { oldPassword, newPassword, repeatNewPassword }
-    return api.put("/users", body)
+    return api.put("/users/resetPassword", body)
 }
 
 const loadUserPagination = (page: number, pageSize: number) => {
