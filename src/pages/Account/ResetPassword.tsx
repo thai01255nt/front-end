@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import { userService } from '../../services';
 import { useNavigate } from 'react-router';
+import $ from 'jquery'
 
 
 export const ResetPassword = () => {
@@ -19,6 +20,7 @@ export const ResetPassword = () => {
             (res) => { navigator("/resetPasswordSuccess") },
             (error) => { if (!error.data?.errors) { alert("unknown error, contact for support") } setErrors(error.data?.errors) }
         )
+        return
     }
     return (
         <div className="container col-lg-7">
