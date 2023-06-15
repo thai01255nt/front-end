@@ -29,7 +29,7 @@ export const ResetPassword = () => {
             <form className="user">
                 <div className="form-group">
                     <input
-                        type="text"
+                        type="password"
                         className={"form-control form-control-user " + (errors.oldPassword ? 'is-invalid' : '')}
                         id="oldPasswordInput"
                         aria-describedby="emailHelp"
