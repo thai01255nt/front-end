@@ -24,7 +24,6 @@ export const LeftMenu = () => {
             setNavItemShowName("")
         }
     }
-    console.log(account.user)
     return (
         <>
             <ul

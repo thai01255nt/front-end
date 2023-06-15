@@ -1,41 +1,27 @@
-// import { Dispatch } from "react"
-// import { AccountActionTypes, AccountState, LOGIN_FAILURE, LOGIN_REQUEST, LOGIN_SUCCESS, LOG_OUT } from "./types"
-// import { userService } from "../../services"
-// import { history } from "../../helpers"
-// import { useSelector } from "react-redux"
-// import { AppState } from ".."
-// import { AxiosResponse } from "axios"
+import { Dispatch } from "react"
+import { UserActionTypes, LOAD_USERS_PAGING_REQUEST, LOAD_USERS_PAGING_SUCCESS, LOAD_USERS_PAGING_FAILURE } from "./types"
+import { userService } from "../../services"
 
-// export const login = (email: string, password: string, from: string) => {
-//     return async (dispatch: Dispatch<AccountActionTypes>) => {
-//         dispatch({
-//             type: LOGIN_REQUEST,
-//             payload: {
-//                 email: email,
-//                 password: password,
-//             }
-//         })
-//         let error = await userService.login(email, password).then((res) => {
-//                 dispatch({
-//                     type: LOGIN_SUCCESS,
-//                     payload: {token: res.data.data.token}
-//                 });
-//                 history.push(from)
-//                 return {}
-//             },
-//             (error) => {
-//                 dispatch({
-//                     type: LOGIN_FAILURE,
-//                     payload: { errors: error.data.errors }
-//                 })
-//                 return error.data.errors
-//             }
-//         )
-//         return error
-//     }
-// }
-
-// export const logout = (): AccountActionTypes => {
-//     return { type: LOG_OUT }
-// }
-export const a = 1
+export const loadUserPagination = (page: number, pageSize: number) => {
+    return async (dispatch: Dispatch<UserActionTypes>) => {
+        dispatch({
+            type: LOAD_USERS_PAGING_REQUEST,
+        })
+        await userService.loadUserPagination(page = page, pageSize = pageSize).then((res) => {
+            dispatch({
+                type: LOAD_USERS_PAGING_SUCCESS,
+                payload: res.data
+            });
+            return {}
+        },
+            (error) => {
+                dispatch({
+                    type: LOAD_USERS_PAGING_FAILURE,
+                    payload: error.data
+                })
+                return
+            }
+        )
+        return
+    }
+}

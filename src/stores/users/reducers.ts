@@ -1,25 +1,46 @@
-// import jwt from 'jwt-decode'
-// import { AccountState, AccountActionTypes, LOGIN_REQUEST, LOGIN_SUCCESS, LOGIN_FAILURE, LOG_OUT } from "./types"
-// const initialState: AccountState = { loading: false }
-// const userReducer = (state: AccountState = initialState, action: AccountActionTypes
-// ): UserState => {
-//     switch (action.type) {
-//         case LOGIN_REQUEST: {
-//             return { ...state, loading: true }
-//         }
-//         case LOGIN_SUCCESS: {
-//             console.log("token", jwt(action.payload.token))
-//             return { ...state, loading: false, token: action.payload.token, user: jwt(action.payload.token) }
-//         }
-//         case LOGIN_FAILURE: {
-//             return { ...state, loading: false, errors: action.payload.errors, token: undefined, user: undefined }
-//         }
-//         case LOG_OUT: {
-//             return { ...state, errors: undefined, token: undefined, user: undefined }
-//         }
-//         default:
-//             return state
-//     }
-// }
+import {
+    UserState,
+    UserActionTypes,
+    LOAD_USERS_PAGING_REQUEST,
+    LOAD_USERS_PAGING_SUCCESS,
+    LOAD_USERS_PAGING_FAILURE,
+} from "./types"
+const initialUserState: UserState = {
+    loading: false,
+    pagination: {
+        total: 0,
+        page: 1,
+        pageSize: 10,
+        data: [],
+    },
+}
 
-export const a = 1
+
+const userReducer = (state: UserState = initialUserState, action: UserActionTypes
+): UserState => {
+    switch (action.type) {
+        case LOAD_USERS_PAGING_REQUEST: {
+            return { ...state, loading: true }
+        }
+        case LOAD_USERS_PAGING_SUCCESS: {
+            return {
+                ...state,
+                loading: false,
+                pagination: action.payload,
+            }
+        }
+        case LOAD_USERS_PAGING_FAILURE: {
+            return {
+                ...state,
+                loading: false,
+                pagination: {
+                    ...state.pagination,
+                }
+            }
+        }
+        default:
+            return state
+    }
+}
+
+export { userReducer }

@@ -1,51 +1,44 @@
-// export const LOGIN_REQUEST = 'LOGIN_REQUEST';
-// export const LOGIN_SUCCESS = 'LOGGIN_SUCCESS';
-// export const LOGIN_FAILURE = 'LOGGIN_FAILURE';
+export const LOAD_USERS_PAGING_REQUEST = 'LOAD_USERS_PAGING_REQUEST'
+export const LOAD_USERS_PAGING_SUCCESS = 'LOAD_USERS_PAGING_SUCCESS'
+export const LOAD_USERS_PAGING_FAILURE = 'LOAD_USERS_PAGING_FAILURE'
 
-export const LOG_OUT = 'LOG_OUT';
 
-// type ErrorResponse = Record<string, Array<string>>
+type ErrorResponse = Record<string, Array<string>>
+type IUser = {
+    id: number
+    email: string
+    adminNameBroker?: string
+    role: string
+}
+type IUserPagination = {
+    total: number,
+    page: number,
+    pageSize: number,
+    data?: IUser[],
+    errors?: ErrorResponse
+}
 
-// type IUser = {
-//     email: string
-//     adminNameBroker?: string
-//     role: string
-// }
-// type IUserPagination = {
-//     total: number,
-//     page: number,
-//     pageSize: number,
-//     data?: IUser[],
-//     errors?: ErrorResponse
-// }
+interface LoadUserPagingRequest {
+    type: typeof LOAD_USERS_PAGING_REQUEST
+}
 
-// type LoginRequest = {
-//     type: typeof LOGIN_REQUEST
-//     payload: {
-//         email: string
-//         password: string
-//     }
-// }
-// type LoginSuccess = {
-//     type: typeof LOGIN_SUCCESS
-//     payload: {
-//         token: string
-//     }
-// }
-// interface LoginFailure {
-//     type: typeof LOGIN_FAILURE
-//     payload: {
-//         errors: ErrorResponse
-//     }
-// }
-// interface Logout {
-//     type: typeof LOG_OUT
-// }
-// export interface AccountState {
-//     user?: AuthenticatedUser
-//     loading: boolean
-//     errors?: ErrorResponse
-//     token?: string
-// }
+interface LoadUserPagingSuccess {
+    type: typeof LOAD_USERS_PAGING_SUCCESS
+    payload: IUserPagination
+}
 
-// export type AccountActionTypes = LoginRequest | LoginSuccess | LoginFailure | Logout
+interface LoadUserPagingFailure {
+    type: typeof LOAD_USERS_PAGING_FAILURE
+    payload: IUserPagination
+}
+
+export interface UserState {
+    loading: boolean,
+    pagination: IUserPagination,
+}
+
+
+export type UserActionTypes =
+    | LoadUserPagingRequest
+    | LoadUserPagingSuccess
+    | LoadUserPagingFailure
