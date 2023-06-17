@@ -24,6 +24,8 @@ export const LeftMenu = () => {
             setNavItemShowName("")
         }
     }
+    console.log(account)
+    console.log((account.user?.roleCode === 1582 || account.user?.adminNameBroker))
     return (
         <>
             <ul
@@ -85,7 +87,7 @@ export const LeftMenu = () => {
                 }
                 {/* Nav Item - quản lý Collapse Menu */}
                 {
-                    (account.user?.roleCode === 1582 || account.user?.adminBorkerID)
+                    (account.user?.roleCode === 1582 || account.user?.adminNameBroker)
                     &&
                     <>
                         <hr className="sidebar-divider" />
@@ -148,53 +150,53 @@ export const LeftMenu = () => {
                                 </div>
                             </div>
                         </li>
+                        {/* Nav Item - Khach hang Collapse Menu */}
+                        <hr className="sidebar-divider" />
+                        <div className="sidebar-heading">
+                            Menu
+                        </div>
+                        <li className="nav-item">
+                            <a
+                                className={"nav-link" + (isNavItemShow && navItemShowName === clientsNav ? "" : " collapsed")}
+                                href='#'
+                                data-toggle="collapse"
+                                data-target="#collapseTwo"
+                                aria-expanded={isNavItemShow && navItemShowName === clientsNav ? "true" : "false"}
+                                aria-controls="collapseTwo"
+                                onClick={() => { handleComponentShow(clientsNav) }}
+                            >
+                                <i className="fas fa-fw fa-cog" />
+                                <span>{clientsNav}</span>
+                            </a>
+                            <div
+                                id="collapseTwo"
+                                className={"collapse" + (isNavItemShow && navItemShowName === clientsNav ? " show" : "")}
+                                aria-labelledby="headingTwo"
+                                data-parent="#accordionSidebar"
+                            >
+                                <div className="bg-white py-2 collapse-inner rounded">
+                                    {/* <h6 className="collapse-header"></h6> */}
+                                    <Link className="collapse-item" to="/clients?brokerName=long_kho_0">long_kho_0</Link>
+                                    <Link className="collapse-item" to="/clients?brokerName=long_kho_0_t0">long_kho_0_t0</Link>
+                                    <Link className="collapse-item" to="/clients?brokerName=long_kho_1">long_kho_1</Link>
+                                    <Link className="collapse-item" to="/clients?brokerName=short_kho_0_new">short_kho_0_new</Link>
+                                </div>
+                            </div>
+                        </li>
                     </>
                 }
-                {/* Nav Item - Khach hang Collapse Menu */}
-                <hr className="sidebar-divider" />
-                <div className="sidebar-heading">
-                    Menu
-                </div>
-                <li className="nav-item">
-                    <a
-                        className={"nav-link" + (isNavItemShow && navItemShowName === clientsNav ? "" : " collapsed")}
-                        href='#'
-                        data-toggle="collapse"
-                        data-target="#collapseTwo"
-                        aria-expanded={isNavItemShow && navItemShowName === clientsNav ? "true" : "false"}
-                        aria-controls="collapseTwo"
-                        onClick={() => { handleComponentShow(clientsNav) }}
-                    >
-                        <i className="fas fa-fw fa-cog" />
-                        <span>{clientsNav}</span>
-                    </a>
-                    <div
-                        id="collapseTwo"
-                        className={"collapse" + (isNavItemShow && navItemShowName === clientsNav ? " show" : "")}
-                        aria-labelledby="headingTwo"
-                        data-parent="#accordionSidebar"
-                    >
-                        <div className="bg-white py-2 collapse-inner rounded">
-                            {/* <h6 className="collapse-header"></h6> */}
-                            <Link className="collapse-item" to="/clients?brokerName=long_kho_0">long_kho_0</Link>
-                            <Link className="collapse-item" to="/clients?brokerName=long_kho_0_t0">long_kho_0_t0</Link>
-                            <Link className="collapse-item" to="/clients?brokerName=long_kho_1">long_kho_1</Link>
-                            <Link className="collapse-item" to="/clients?brokerName=short_kho_0_new">short_kho_0_new</Link>
-                        </div>
-                    </div>
-                </li>
                 {/* Divider */}
-                <hr className="sidebar-divider d-none d-md-block" />
+                {/* <hr className="sidebar-divider d-none d-md-block" /> */}
                 {/* Sidebar Toggler (Sidebar) */}
-                <div className="text-center d-none d-md-inline">
+                {/* <div className="text-center d-none d-md-inline">
                     <button className="rounded-circle border-0" id="sidebarToggle" onClick={() => { setIsToggled(!isToggled) }} />
-                </div>
+                </div> */}
                 {/* Sidebar Message */}
-                <div className="sidebar-card d-none d-lg-flex">
+                {/* <div className="sidebar-card d-none d-lg-flex">
                     <img className="sidebar-card-illustration mb-2" src="img/undraw_rocket.svg" alt="..." />
                     <p className="text-center mb-2"><strong>SB Admin Pro</strong> is packed with premium features, components, and more!</p>
                     <a className="btn btn-success btn-sm" href="https://startbootstrap.com/theme/sb-admin-pro">Upgrade to Pro!</a>
-                </div>
+                </div> */}
             </ul >
         </>
     )

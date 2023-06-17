@@ -6,7 +6,7 @@ import { useSelector } from "react-redux"
 import { AppState } from ".."
 import { AxiosResponse } from "axios"
 
-export const login = (email: string, password: string, from: string) => {
+export const login = (email: string, password: string, navigate: any) => {
     return async (dispatch: Dispatch<AccountActionTypes>) => {
         dispatch({
             type: LOGIN_REQUEST,
@@ -20,7 +20,7 @@ export const login = (email: string, password: string, from: string) => {
                     type: LOGIN_SUCCESS,
                     payload: {token: res.data.data.token}
                 });
-                history.push(from)
+                navigate("/")
                 return {}
             },
             (error) => {

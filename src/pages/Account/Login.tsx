@@ -1,7 +1,7 @@
 import React, { ChangeEvent, FormEvent, useEffect, useState } from 'react'
 import { AppState } from '../../stores'
 import { useDispatch, useSelector, useStore } from 'react-redux'
-import { useLocation } from 'react-router'
+import { useLocation, useNavigate } from 'react-router'
 import { login, logout } from '../../stores/account/actions'
 import { AccountState } from '../../stores/account/types'
 
@@ -35,13 +35,14 @@ export const Login = () => {
         const { name, value } = e.target;
         setInputs((inputs) => ({ ...inputs, [name]: value }))
     }
-
+    const navigate = useNavigate()
     const handleSubmmit = async (e: FormEvent<HTMLFormElement>) => {
         e.preventDefault()
         setSubmitted(true)
         if (email && password) {
-            const { from } = location.state || { from: { pathname: '/' } }
-            const err = await login(email, password, from)(dispatch)
+            // const { from } = location.state || { from: { pathname: '/' } }
+            // const from = "/"
+            const err = await login(email, password, navigate)(dispatch)
             await setError((errors)=> ({...errors, email: err.email || [], password: err.password || []}))
         }
     }

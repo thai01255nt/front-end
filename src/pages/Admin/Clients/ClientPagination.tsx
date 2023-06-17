@@ -12,7 +12,7 @@ export const ClientPagination = () => {
 
     const query = new URLSearchParams(search);
     const brokerName = query.get('brokerName');
-    
+    console.log(brokerName)
     const total = useSelector((state: AppState) => state.client.pagination.total)
     const currentPage = useSelector((state: AppState) => state.client.pagination.page + 1)
     const pageSize = useSelector((state: AppState) => state.client.pagination.pageSize)

@@ -10,7 +10,7 @@ type AuthenticatedUser = {
     id: string
     email: string
     roleCode: number
-    adminBorkerID: string
+    adminNameBroker: string
 }
 type LoginRequest = {
     type: typeof LOGIN_REQUEST
