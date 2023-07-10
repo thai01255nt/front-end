@@ -12,7 +12,6 @@ export const ClientPagination = () => {
 
     const query = new URLSearchParams(search);
     const brokerName = query.get('brokerName');
-    console.log(brokerName)
     const total = useSelector((state: AppState) => state.client.pagination.total)
     const currentPage = useSelector((state: AppState) => state.client.pagination.page + 1)
     const pageSize = useSelector((state: AppState) => state.client.pagination.pageSize)
@@ -29,12 +28,10 @@ export const ClientPagination = () => {
     const clientElements = clients?.map((client) => {
         return (
             <tr onClick={() => navigate(`/clients/${client.idClient}`)}>
-                <td>{client.id}</td>
                 <td>{client.idClient}</td>
                 <td>{client.nameClient}</td>
-                <td>{client.nameBroker}</td>
                 <td>{client.interestRate}</td>
-                <td>{client.costBuy}</td>
+                <td>{client.costSell}</td>
                 <td>{client.costSell}</td>
             </tr>
         )
@@ -53,24 +50,24 @@ export const ClientPagination = () => {
                             <table className="table table-bordered" id="dataTable" width="100%" cellSpacing={0}>
                                 <thead>
                                     <tr>
-                                        <th>id</th>
-                                        <th>idClient</th>
-                                        <th>nameClient</th>
-                                        <th>nameBroker</th>
-                                        <th>interestRate</th>
-                                        <th>costBuy</th>
-                                        <th>costSell</th>
+                                        {/* <th>id</th> */}
+                                        <th>Tài khoản</th>
+                                        <th>Tên</th>
+                                        {/* <th>nameBroker</th> */}
+                                        <th>Lãi suất</th>
+                                        <th>Phí mua</th>
+                                        <th>Phí bán</th>
                                     </tr>
                                 </thead>
                                 <tfoot>
                                     <tr>
-                                        <th>id</th>
-                                        <th>idClient</th>
-                                        <th>nameClient</th>
-                                        <th>nameBroker</th>
-                                        <th>interestRate</th>
-                                        <th>costBuy</th>
-                                        <th>costSell</th>
+                                        {/* <th>id</th> */}
+                                        <th>Tài khoản</th>
+                                        <th>Tên</th>
+                                        {/* <th>nameBroker</th> */}
+                                        <th>Lãi suất</th>
+                                        <th>Phí mua</th>
+                                        <th>Phí bán</th>
                                     </tr>
                                 </tfoot>
                                 <tbody>{clientElements}</tbody>

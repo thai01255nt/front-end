@@ -56,7 +56,7 @@ export const Management = () => {
                     <h1 className="h4 mb-2 text-black-50"></h1>
                     <div className="card shadow mb-4">
                         <div className="card-body">
-                            {managementRes.data?.data ? <Table data={managementRes.data.data} hightLightLastRow={false}></Table> : <></>}
+                            {managementRes.data?.data ? <Table data={managementRes.data.data} hightLightLastRow={false} firstSticky={true}></Table> : <></>}
                         </div>
                         <div className='card-footer'>
                             <Pagination total={total} currentPage={currentPage} pageSize={pageSize} pageLimit={5} onPageChanged={onPageChanged} />

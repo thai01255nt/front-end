@@ -36,7 +36,6 @@ export const UserClientMembership = () => {
     })
     const onClick = async () => {
         setErrors({idClient: null})
-        console.log("asd")
         const idClient = $('#inputIDClient').val() as string;
         await userService.addClientMembership(user.id, idClient).then(
             (res) => { },
