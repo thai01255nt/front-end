@@ -50,10 +50,10 @@ export const Management = () => {
     return (
         < div className="container-fluid" >
             {/* Page Heading */}
-            < h1 className="h3 mb-4 text-gray-800" >{`Báo cáo management: ${brokerName}`}</h1 >
+            < h1 className="h3 mb-4 text-black-50" >{`Báo cáo management: ${brokerName}`}</h1 >
             <div className="row">
                 <div className="col-lg">
-                    <h1 className="h4 mb-2 text-gray-800"></h1>
+                    <h1 className="h4 mb-2 text-black-50"></h1>
                     <div className="card shadow mb-4">
                         <div className="card-body">
                             {managementRes.data?.data ? <Table data={managementRes.data.data} hightLightLastRow={false}></Table> : <></>}

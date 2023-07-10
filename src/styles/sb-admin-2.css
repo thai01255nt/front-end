@@ -60,7 +60,7 @@ article, aside, figcaption, figure, footer, header, hgroup, main, nav, section {
 
 body {
   margin: 0;
-  font-family: "Nunito", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+  font-family: "Times New Roman",Georgia,Serif;
   font-size: 1rem;
   font-weight: 400;
   line-height: 1.5;
@@ -1485,7 +1485,7 @@ pre code {
 .table {
   width: 100%;
   margin-bottom: 1rem;
-  color: #858796;
+  color: #232429;
 }
 
 .table th,
@@ -9648,7 +9648,7 @@ a.text-light:hover, a.text-light:focus {
 }
 
 .text-dark {
-  color: #5a5c69 !important;
+  color: #232429 !important;
 }
 
 a.text-dark:hover, a.text-dark:focus {

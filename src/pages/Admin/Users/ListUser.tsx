@@ -34,7 +34,7 @@ export const ListUser = () => {
     return (
         <>
             <div>
-                <h1 className="h3 mb-2 text-gray-800">Danh sách</h1>
+                <h1 className="h3 mb-2 text-dark">Danh sách</h1>
                 {/* DataTales Example */}
                 <div className="card shadow mb-4">
                     {/* <div className="card-header py-3">

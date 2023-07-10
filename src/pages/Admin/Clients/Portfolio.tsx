@@ -24,10 +24,10 @@ export const Portfolio = () => {
     return (
         < div className="container-fluid" >
             {/* Page Heading */}
-            < h1 className="h3 mb-4 text-gray-800" >{`Báo cáo danh mục: ${brokerName}`}</h1 >
+            < h1 className="h3 mb-4 text-dark" >{`Báo cáo danh mục: ${brokerName}`}</h1 >
             <div className="row">
                 <div className="col-lg">
-                    <h1 className="h4 mb-2 text-gray-800"></h1>
+                    <h1 className="h4 mb-2 text-dark"></h1>
                     <div className="card shadow mb-4">
                         <div className="card-body">
                             {portfolioRes.data?.data ? <Table data={portfolioRes.data.data} hightLightLastRow={false}></Table> : <></>}

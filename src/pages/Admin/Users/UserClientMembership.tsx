@@ -50,8 +50,8 @@ export const UserClientMembership = () => {
     return (
         <>
             <div>
-                <h1 className="h3 mb-2 text-gray-800">{`Danh sách được truy cập của người dùng:`}</h1>
-                <h1 className="h3 mb-2 text-gray-800">{` ${user.email}`}</h1>
+                <h1 className="h3 mb-2 text-dark">{`Danh sách được truy cập của người dùng:`}</h1>
+                <h1 className="h3 mb-2 text-dark">{` ${user.email}`}</h1>
                 <div className="col-lg-2">
                     <div className="form-group">
                         <input type="text" className={"form-control form-control-user " + (errors.idClient ? 'is-invalid' : '')} id="inputIDClient" placeholder="ID client" />
