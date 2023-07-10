@@ -10,7 +10,15 @@ export const loadClientPagination = (page: number, pageSize: number, brokerName:
         await clientService.loadClientPagination(page = page, pageSize = pageSize, brokerName = brokerName).then((res) => {
             dispatch({
                 type: LOAD_CLIENTS_PAGING_SUCCESS,
-                payload: res.data
+                payload: res.data.map((r: any)=> {
+                    return {
+                        "Tài khoản": r.idClient,
+                        "Tên": r.nameClient,
+                        "Lãi suất": r.interestRate,
+                        "Phí mua": r.costBuy,
+                        "Phí bán": r.costSell,
+                    }
+                })
             });
             return {}
         },
@@ -27,6 +35,24 @@ export const loadClientPagination = (page: number, pageSize: number, brokerName:
 }
 
 export const loadClientDetail = (idClient: string) => {
+    const extractData = (data: any) =>{
+        const results = {} as any
+        for (var key in data){
+            if (key === "assets"){
+                const records = data[key]
+                results["BÁO CÁO TÀI SẢN"] = records.map((r: any)=>(
+                    {
+                        "Tổng tiền vay TB": r.totalValueLoan,
+                        "Tiền nộp cọc": r.deposit,
+                        "Lãi lỗ đã thực hiện": r.realisedPNL,
+                        "Lãi lỗ chưa thực hiện": r.expectedPNL,
+                        "Cọc phải nộp": r.minDeposite,
+                        "NAV hiện tại": r.nav
+                    }
+                ))
+            }
+        }
+    }
     return async (dispatch: Dispatch<ClientActionTypes>) => {
         dispatch({
             type: LOAD_CLIENT_DETAIL_REQUEST,
@@ -34,7 +60,9 @@ export const loadClientDetail = (idClient: string) => {
         await clientService.loadClientDetail(idClient).then((res) => {
             dispatch({
                 type: LOAD_CLIENT_DETAIL_SUCCESS,
-                payload: res.data
+                payload: res.data.map((r: any)=>{
+                    
+                })
             });
             return {}
         },
