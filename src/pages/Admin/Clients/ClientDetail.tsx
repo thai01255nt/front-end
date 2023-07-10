@@ -14,7 +14,6 @@ export const ClientDetail = () => {
     const deposite = useSelector((state: AppState) => state.clientDetail.detail?.data?.deposite)
     const portfolio = useSelector((state: AppState) => state.clientDetail.detail?.data?.portfolio)
     const assets = useSelector((state: AppState) => state.clientDetail.detail?.data?.assets)
-    console.log(assets)
     useEffect(() => {
         if (id) loadClientDetail(id)(dispatch)
         const intervalId = setInterval(() => {
@@ -29,10 +28,10 @@ export const ClientDetail = () => {
             < h1 className="h3 mb-4 text-dark" >{`Báo cáo khách hàng ${id}`}</h1 >
             <div className="row">
                 <div className="col-lg">
-                    <h1 className="h4 mb-2 text-dark">assets</h1>
+                    <h1 className="h4 mb-2 text-dark">BÁO CÁO TÀI SẢN</h1>
                     <div className="card shadow mb-4">
                         <div className="card-body">
-                            <Table data={assets} hightLightLastRow={false}></Table>
+                            <Table data={assets} hightLightLastRow={false} firstSticky={false}></Table>
                         </div>
                         <div className='card-footer'>
                         </div>
@@ -41,20 +40,20 @@ export const ClientDetail = () => {
             </div>
             <div className="row">
                 <div className="col-lg-4">
-                    <h1 className="h4 mb-2 text-dark">deposite</h1>
+                    <h1 className="h4 mb-2 text-dark">THEO DÕI NỘP CỌC</h1>
                     <div className="card shadow mb-4">
                         <div className="card-body">
-                            <Table data={deposite} hightLightLastRow={true}></Table>
+                            <Table data={deposite} hightLightLastRow={true} firstSticky={false}></Table>
                         </div>
                         <div className='card-footer'>
                         </div>
                     </div>
                 </div>
                 <div className="col-lg-8">
-                    <h1 className="h4 mb-2 text-dark">portfolio</h1>
+                    <h1 className="h4 mb-2 text-dark">DANH MỤC CỔ PHIẾU HIỆN TẠI</h1>
                     <div className="card shadow mb-4">
                         <div className="card-body">
-                            <Table data={portfolio} hightLightLastRow={false}></Table>
+                            <Table data={portfolio} hightLightLastRow={true} firstSticky={false}></Table>
                         </div>
                         <div className='card-footer'>
                         </div>
@@ -63,10 +62,10 @@ export const ClientDetail = () => {
             </div>
             <div className="row">
                 <div className="col-lg">
-                    <h1 className="h4 mb-2 text-dark">expectedPNL</h1>
+                    <h1 className="h4 mb-2 text-dark">DANH MỤC LỢI NHUẬN KỲ VỌNG</h1>
                     <div className="card shadow mb-4">
                         <div className="card-body">
-                            <Table data={expectedPNL} hightLightLastRow={true}></Table>
+                            <Table data={expectedPNL} hightLightLastRow={true} firstSticky={false}></Table>
                         </div>
                         <div className='card-footer'>
                         </div>
@@ -75,10 +74,10 @@ export const ClientDetail = () => {
             </div>
             <div className="row">
                 <div className="col-lg">
-                    <h1 className="h4 mb-2 text-dark">realisedPNL</h1>
+                    <h1 className="h4 mb-2 text-dark">DANH MỤC LỢI NHUẬN ĐÃ TẤT TOÁN</h1>
                     <div className="card shadow mb-4">
                         <div className="card-body">
-                            <Table data={realisedPNL} hightLightLastRow={true}></Table>
+                            <Table data={realisedPNL} hightLightLastRow={true} firstSticky={false}></Table>
                         </div>
                         <div className='card-footer'>
                         </div>

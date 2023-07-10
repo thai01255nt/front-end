@@ -30,7 +30,7 @@ export const Portfolio = () => {
                     <h1 className="h4 mb-2 text-dark"></h1>
                     <div className="card shadow mb-4">
                         <div className="card-body">
-                            {portfolioRes.data?.data ? <Table data={portfolioRes.data.data} hightLightLastRow={false}></Table> : <></>}
+                            {portfolioRes.data?.data ? <Table data={portfolioRes.data.data} hightLightLastRow={false} firstSticky={false}></Table> : <></>}
                         </div>
                         <div className='card-footer'>
                         </div>

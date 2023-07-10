@@ -1488,6 +1488,12 @@ pre code {
   color: #232429;
 }
 
+.sticky_col {
+  position: sticky;
+  left: 0px;
+  z-index: 1;
+}
+
 .table th,
 .table td {
   padding: 0.75rem;

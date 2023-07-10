@@ -12,7 +12,7 @@ export const LeftMenu = () => {
 
     const systemNav = "Hệ thống"
     const clientsNav = "Khách hàng"
-    const managementNav = "Tổng hợp"
+    const managementNav = "Quản lý"
     const portfolioNav = "Danh mục"
 
     const handleComponentShow = (navItemName: string) => {

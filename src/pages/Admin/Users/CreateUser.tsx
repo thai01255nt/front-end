@@ -21,7 +21,7 @@ export const CreateUser = () => {
         adminNameBroker = adminNameBroker === "" ? undefined : adminNameBroker
         // ($('#inputAdminNameBroker').val() || undefined) as string | undefined;
         await userService.createUser(email, defaultPassword, repeatDefaultPassword, adminNameBroker).then(
-            (res) => { navigate(`/userClientMemberships/users/${res.data.data.id}/clients`); console.log(res)},
+            (res) => { navigate(`/userClientMemberships/users/${res.data.data.id}/clients`);},
             (error) => { if (!error.data?.errors) { alert("unknown error, contact for support") } setErrors(error.data?.errors) }
         )
     }
